@@ -1,7 +1,7 @@
-import { greet } from "./utils/greet";
+import AllCards from "./AllCards";
 
 function App(): JSX.Element {
-  return <h1>{greet("World")}</h1>;
+  return <AllCards />;
 }
 
 export default App;
