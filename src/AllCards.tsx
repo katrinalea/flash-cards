@@ -1,4 +1,4 @@
-import data from "./words.json";
+
 import { useState } from "react";
 import "./flashcard.css";
 
@@ -6,21 +6,28 @@ interface words {
   English: string;
   Spanish: string;
 }
+interface propInterface {
+  flashCardWordData: words[]
+}
 
-export default function AllCards(): JSX.Element {
-  const wordData: words[] = data;
-  const [unusedCards, setUnusedCards] = useState<words[]>(wordData); // starts as all cards
+export default function AllCards(props: propInterface): JSX.Element {
+  const testingCards = props.flashCardWordData
+  const startGame: words[] = [{
+    "Spanish": "iniciar juego",
+    "English": "Start Game"
+  }]
+  const [unusedCards, setUnusedCards] = useState<words[]>(startGame); 
   const randomNumber = Math.floor(Math.random() * unusedCards.length);
   const [flip, setFlip] = useState(false);
-  const [currentCard, setCurrentCard] = useState<words>(
-    unusedCards[randomNumber]
-  );
+  const [currentCard, setCurrentCard] = useState<words>(unusedCards[randomNumber]);
   const [wrongCards, setWrongCards] = useState<words[]>([]);
   const [correctCards, setCorrectCards] = useState<words[]>([]);
 
   const wrongCount = wrongCards.length;
   const correctCount = correctCards.length;
   console.log(unusedCards, "unusedcards");
+  console.log(testingCards, "testing")
+  
 
   const handleNext = () => {
     setCurrentCard(unusedCards[randomNumber]);
@@ -48,6 +55,7 @@ export default function AllCards(): JSX.Element {
   return (
     <div className="page">
       <h1> Spanish/English flashcard game</h1>
+      <button onClick = {() => setUnusedCards(testingCards)}> Start Game</button>
       <div className="card">
         <p className="text">
           {flip ? (
@@ -81,7 +89,7 @@ export default function AllCards(): JSX.Element {
       <p>
         {" "}
         Words to revise = {wrongCount} <br /> Correct words = {correctCount}{" "}
-        <br /> Words left to test: {unusedCards.length}
+        <br /> Words left to test: {unusedCards.length}/{props.flashCardWordData.length}
       </p>
     </div>
   );
