@@ -1,7 +1,8 @@
 import AllCards from "./AllCards";
 import WelcomePage from "./welcomePage";
-import {useState} from "react"
+import { useState } from "react";
 import data from "./words.json";
+import { setImmediate } from "timers";
 
 interface words {
   English: string;
@@ -9,22 +10,36 @@ interface words {
 }
 
 function App(): JSX.Element {
-  const wordData = data
+  const wordData = data;
 
-  
-  const[countedWordData, setCountedWordData] = useState<words[]>(wordData)
+  const [countedWordData, setCountedWordData] = useState<words[]>(wordData);
+  const [pageToRender, setPageToRender] = useState<string>("welcome");
 
   const flashcardCountFunction = (chosenCount: number) => {
-    setCountedWordData(wordData.sort(() => Math.random() - Math.random()).slice(0, chosenCount))
-  }
-  
-  
+    setCountedWordData(
+      wordData.sort(() => Math.random() - Math.random()).slice(0, chosenCount)
+    );
+  };
+
+  const renderHandle = (page: string) => {
+    setPageToRender(page);
+  };
+
   return (
     <div>
-  <WelcomePage userCountSet = {flashcardCountFunction}/>
-  <AllCards flashCardWordData = {countedWordData} />
-  </div>
-  )
+      {pageToRender === "welcome" ? (
+        <>
+          <WelcomePage
+            userCountSet={flashcardCountFunction}
+            changeToFlashCards={renderHandle}
+          />
+          <p> You have chosen to test {countedWordData.length} words </p>
+        </>
+      ) : (
+        <AllCards flashCardWordData={countedWordData} />
+      )}
+    </div>
+  );
 }
 
 export default App;
