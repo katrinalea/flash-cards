@@ -7,11 +7,11 @@ interface words {
 }
 interface propInterface {
   flashCardWordData: words[];
-  setRenderToHomePage: (page: string) => void;
+  setRender: (page: string) => void;
   username: string;
 }
 
-export default function AllCards(props: propInterface): JSX.Element {
+export default function Flashcards(props: propInterface): JSX.Element {
   const testingCards = props.flashCardWordData;
   const startGame: words[] = [
     {
@@ -72,21 +72,25 @@ export default function AllCards(props: propInterface): JSX.Element {
     <div className="page">
       {unusedCards.length === 0 ? (
         <div>
-          <p> Congrats you have completed your set!</p>
-          <button onClick={() => props.setRenderToHomePage("welcome")}>
-            {" "}
-            Home{" "}
-          </button>
+          <p> Congrats {props.username} you have completed your set!</p>
+          <button onClick={() => props.setRender("welcome")}> Home </button>
         </div>
       ) : (
         <div>
           <h1> Spanish/English flashcard game</h1>
           <button
             className="homeButton"
-            onClick={() => props.setRenderToHomePage("welcome")}
+            onClick={() => props.setRender("welcome")}
           >
             {" "}
             Home{" "}
+          </button>
+          <button
+            className="homeButton"
+            onClick={() => props.setRender("leaderboard")}
+          >
+            {" "}
+            Leaderboard
           </button>
           <button
             className="button-24"

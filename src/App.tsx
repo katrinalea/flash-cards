@@ -1,8 +1,9 @@
-import AllCards from "./AllCards";
+import Flashcards from "./Flashcards";
 import WelcomePage from "./welcomePage";
 import { useState } from "react";
 import data from "./words.json";
 import "./welcomepage.css";
+import Leaderboard from "./leaderboard";
 
 interface words {
   English: string;
@@ -38,15 +39,18 @@ function App(): JSX.Element {
             userCountSet={flashcardCountFunction}
             changeToFlashCards={renderHandle}
             userNameAssign={userNameSetter}
-            cardCount = {countedWordData.length}
+            cardCount={countedWordData.length}
+            setRender={renderHandle}
           />
         </>
-      ) : (
-        <AllCards
+      ) : pageToRender === "flashcards" ? (
+        <Flashcards
           flashCardWordData={countedWordData}
-          setRenderToHomePage={renderHandle}
+          setRender={renderHandle}
           username={userName}
         />
+      ) : (
+        <Leaderboard />
       )}
     </div>
   );

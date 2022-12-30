@@ -6,14 +6,15 @@ interface propInterface {
   userCountSet: (count: number) => void;
   changeToFlashCards: (page: string) => void;
   userNameAssign: (username: string) => void;
-  cardCount: number
+  cardCount: number;
+  setRender: (page: string) => void;
 }
 
 export default function WelcomePage(props: propInterface): JSX.Element {
   const [userName, setUserName] = useState<string>("");
   const [tempUserName, setTempUserName] = useState<string>("");
   const handleMoveToFlash = () => {
-    props.changeToFlashCards("flashcard");
+    props.changeToFlashCards("flashcards");
   };
 
   const handleUserName = () => {
@@ -23,6 +24,13 @@ export default function WelcomePage(props: propInterface): JSX.Element {
   return (
     <div className="wholePage">
       <h1> English to Spanish flashcard game</h1>
+      <button
+        className="homeButton"
+        onClick={() => props.setRender("leaderboard")}
+      >
+        {" "}
+        Leaderboard
+      </button>
 
       <br />
       {!userName ? (
