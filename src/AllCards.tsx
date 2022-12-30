@@ -7,6 +7,8 @@ interface words {
 }
 interface propInterface {
   flashCardWordData: words[];
+  setRenderToHomePage: (page: string) => void;
+  username: string;
 }
 
 export default function AllCards(props: propInterface): JSX.Element {
@@ -54,53 +56,110 @@ export default function AllCards(props: propInterface): JSX.Element {
     }
   };
 
+  const handleTestIncorrect = () => {
+    setUnusedCards(wrongCards);
+  };
+
+  const handleStoreScore = (
+    score: number,
+    totalTested: number,
+    name: string
+  ) => {
+    //eventually add a post to the db
+  };
+
   return (
     <div className="page">
-      <h1> Spanish/English flashcard game</h1>
-      <button
-        className="button-24"
-        onClick={() => setUnusedCards(testingCards)}
-      >
-        {" "}
-        Start Game
-      </button>
-      <br />
-      <div className="card">
-        <p className="text">
-          {flip ? (
-            <img className="flags" src="./utils/englishflag.png" alt="" />
-          ) : (
-            <img className="flags" src="./utils/spanishflag.png" alt="" />
-          )}
+      {unusedCards.length === 0 ? (
+        <div>
+          <p> Congrats you have completed your set!</p>
+          <button onClick={() => props.setRenderToHomePage("welcome")}>
+            {" "}
+            Home{" "}
+          </button>
+        </div>
+      ) : (
+        <div>
+          <h1> Spanish/English flashcard game</h1>
+          <button
+            className="homeButton"
+            onClick={() => props.setRenderToHomePage("welcome")}
+          >
+            {" "}
+            Home{" "}
+          </button>
+          <button
+            className="button-24"
+            onClick={() => setUnusedCards(testingCards)}
+          >
+            {" "}
+            Start Game
+          </button>
           <br />
-          {flip ? currentCard.English : currentCard.Spanish}
-        </p>
-      </div>
-      <button className="button-wrong" onClick={handleWrong}>
-        {" "}
-        Incorrect{" "}
-      </button>
-      <button className="button-correct" onClick={handleCorrect}>
-        {" "}
-        Correct{" "}
-      </button>
-      <br />
-      <br />
-      <button className="button-24" onClick={() => setFlip(!flip)}>
-        {" "}
-        Flip Card{" "}
-      </button>
-      <button className="button-24" onClick={handleNext}>
-        {" "}
-        Next card{" "}
-      </button>
-      <br />
-      <p>
-        {" "}
-        Words to revise = {wrongCount} <br /> Correct words = {correctCount}{" "}
-        <br /> Words left to test: {unusedCards.length}/
-        {props.flashCardWordData.length}
-      </p>
+          <div className="card">
+            <p className="text">
+              {flip ? (
+                <img className="flags" src="./utils/englishflag.png" alt="" />
+              ) : (
+                <img className="flags" src="./utils/spanishflag.png" alt="" />
+              )}
+              <br />
+              {flip ? currentCard.English : currentCard.Spanish}
+            </p>
+          </div>
+          <button className="button-wrong" onClick={handleWrong}>
+            {" "}
+            Incorrect{" "}
+          </button>
+          <button className="button-correct" onClick={handleCorrect}>
+            {" "}
+            Correct{" "}
+          </button>
+          <br />
+          <br />
+          <button className="button-24" onClick={() => setFlip(!flip)}>
+            {" "}
+            Flip Card{" "}
+          </button>
+          <button className="button-24" onClick={handleNext}>
+            {" "}
+            Next card{" "}
+          </button>
+          <br />
+          <p>
+            {" "}
+            Words to revise = {wrongCount} <br /> Correct words = {correctCount}{" "}
+            <br />{" "}
+            <p>
+              Words left to test:{" "}
+              {unusedCards.length > 1 ? (
+                <p>
+                  {" "}
+                  ({unusedCards.length}/{props.flashCardWordData.length}){" "}
+                </p>
+              ) : (
+                <p> No cards to test </p>
+              )}
+            </p>
+            <button onClick={handleTestIncorrect}>
+              {" "}
+              Retest wrong answers?
+            </button>
+            <button
+              onClick={() =>
+                handleStoreScore(
+                  correctCards.length,
+                  testingCards.length,
+                  props.username
+                )
+              }
+            >
+              {" "}
+              Store score{" "}
+            </button>
+          </p>
+        </div>
+      )}
     </div>
   );
 }

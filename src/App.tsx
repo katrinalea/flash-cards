@@ -2,7 +2,7 @@ import AllCards from "./AllCards";
 import WelcomePage from "./welcomePage";
 import { useState } from "react";
 import data from "./words.json";
-import { setImmediate } from "timers";
+import "./welcomepage.css";
 
 interface words {
   English: string;
@@ -14,6 +14,7 @@ function App(): JSX.Element {
 
   const [countedWordData, setCountedWordData] = useState<words[]>(wordData);
   const [pageToRender, setPageToRender] = useState<string>("welcome");
+  const [userName, setUserName] = useState<string>("");
 
   const flashcardCountFunction = (chosenCount: number) => {
     setCountedWordData(
@@ -25,6 +26,10 @@ function App(): JSX.Element {
     setPageToRender(page);
   };
 
+  const userNameSetter = (name: string) => {
+    setUserName(name);
+  };
+
   return (
     <div>
       {pageToRender === "welcome" ? (
@@ -32,11 +37,16 @@ function App(): JSX.Element {
           <WelcomePage
             userCountSet={flashcardCountFunction}
             changeToFlashCards={renderHandle}
+            userNameAssign={userNameSetter}
+            cardCount = {countedWordData.length}
           />
-          <p> You have chosen to test {countedWordData.length} words </p>
         </>
       ) : (
-        <AllCards flashCardWordData={countedWordData} />
+        <AllCards
+          flashCardWordData={countedWordData}
+          setRenderToHomePage={renderHandle}
+          username={userName}
+        />
       )}
     </div>
   );

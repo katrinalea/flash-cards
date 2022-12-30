@@ -1,0 +1,12 @@
+.wholePage {
+  text-align: center;
+  font: 100;
+  display: block;
+}
+
+.testCount {
+  text-align: center;
+}
+.buttons {
+  border: black solid 10;
+}
