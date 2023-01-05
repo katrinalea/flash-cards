@@ -110,6 +110,7 @@ export default function Flashcards(props: propInterface): JSX.Element {
             onClick={() => {
               setUnusedCards([...testingCards]);
               setCurrentCard(unusedCards[randomNumber]);
+              setFlip(false)
             }}
           >
             {" "}
