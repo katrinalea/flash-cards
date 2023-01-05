@@ -6,7 +6,7 @@ interface LBoard {
   name: string;
   correct: number;
   testamount: number;
-  percentage: number
+  percentage: number;
 }
 
 interface propInterface {
