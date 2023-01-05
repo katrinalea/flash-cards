@@ -19,7 +19,8 @@ export default function Leaderboard(props: propInterface): JSX.Element {
 
   useEffect(() => {
     const fetchAPI = async () => {
-      const response = await axios.get("http://localhost:4000/names");
+      const response = await axios.get("https://flashcards-spanish.onrender.com/names");
+      //const response = await axios.get("http://localhost:4000/names");
       const fetchedWholeObject = response.data;
       const fetchedTasks = fetchedWholeObject.data;
       // sets tasks to the data

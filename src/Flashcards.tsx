@@ -68,11 +68,16 @@ export default function Flashcards(props: propInterface): JSX.Element {
     name: string
   ) => {
     console.log("storing handle entered", name, score, totalTested);
-    const response = await axios.post("http://localhost:4000/names", {
+    const response = await axios.post("https://flashcards-spanish.onrender.com/names", {
       name: name,
       correct: score,
       testamount: totalTested,
     });
+    // const response = await axios.post("http://localhost:4000/names", {
+    //   name: name,
+    //   correct: score,
+    //   testamount: totalTested,
+    // });
     console.log(response, "score submitted");
   };
 
