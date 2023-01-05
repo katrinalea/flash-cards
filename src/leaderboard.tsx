@@ -5,7 +5,8 @@ interface LBoard {
   id: number;
   name: string;
   correct: number;
-  testAmount: number;
+  testamount: number;
+  percentage: number
 }
 
 interface propInterface {
@@ -29,7 +30,7 @@ export default function Leaderboard(props: propInterface): JSX.Element {
 
   return (
     <div className="wholePage">
-      <h1> Leaderboard </h1>
+      <h1> Top Ten Leaderboard </h1>
       <button className="homeButton" onClick={() => props.setRender("welcome")}>
         {" "}
         Home{" "}
@@ -38,14 +39,16 @@ export default function Leaderboard(props: propInterface): JSX.Element {
         <tr>
           <th>Name</th>
           <th>Score</th>
+          <th>Percentage</th>
         </tr>
         {leaderboard.map((person) => (
           <>
             <tr>
               <td>{person.name}</td>
               <td>
-                {person.correct}/{person.testAmount}
+                {person.correct}/{person.testamount}
               </td>
+              <td>{person.percentage}</td>
             </tr>
           </>
         ))}

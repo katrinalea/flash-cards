@@ -18,4 +18,9 @@ td {
   border: 1px black solid;
   justify-content: center;
   margin: auto auto auto auto;
+  border-collapse: collapse;
+}
+
+th {
+  width: 300px
 }

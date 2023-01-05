@@ -73,7 +73,7 @@ export default function Flashcards(props: propInterface): JSX.Element {
       correct: score,
       testamount: totalTested,
     });
-    console.log(response);
+    console.log(response, "score submitted");
   };
 
   return (
