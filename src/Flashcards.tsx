@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./flashcard.css";
+import axios from "axios";
 
 interface words {
   English: string;
@@ -21,7 +22,7 @@ export default function Flashcards(props: propInterface): JSX.Element {
   ];
   const [unusedCards, setUnusedCards] = useState<words[]>(startGame);
   const randomNumber = Math.floor(Math.random() * unusedCards.length);
-  const [flip, setFlip] = useState(false);
+  const [flip, setFlip] = useState(true);
   const [currentCard, setCurrentCard] = useState<words>(
     unusedCards[randomNumber]
   );
@@ -35,6 +36,7 @@ export default function Flashcards(props: propInterface): JSX.Element {
 
   const handleNext = () => {
     setCurrentCard(unusedCards[randomNumber]);
+    setFlip(false);
   };
 
   const handleWrong = () => {
@@ -60,12 +62,18 @@ export default function Flashcards(props: propInterface): JSX.Element {
     setUnusedCards(wrongCards);
   };
 
-  const handleStoreScore = (
+  const handleStoreScore = async (
     score: number,
     totalTested: number,
     name: string
   ) => {
-    //eventually add a post to the db
+    console.log("storing handle entered", name, score, totalTested);
+    const response = await axios.post("http://localhost:4000/names", {
+      name: name,
+      correct: score,
+      testamount: totalTested,
+    });
+    console.log(response);
   };
 
   return (
@@ -86,7 +94,7 @@ export default function Flashcards(props: propInterface): JSX.Element {
             Home{" "}
           </button>
           <button
-            className="homeButton"
+            className="leaderButton"
             onClick={() => props.setRender("leaderboard")}
           >
             {" "}
@@ -94,7 +102,10 @@ export default function Flashcards(props: propInterface): JSX.Element {
           </button>
           <button
             className="button-24"
-            onClick={() => setUnusedCards(testingCards)}
+            onClick={() => {
+              setUnusedCards([...testingCards]);
+              setCurrentCard(unusedCards[randomNumber]);
+            }}
           >
             {" "}
             Start Game

@@ -10,3 +10,12 @@
 .buttons {
   border: black solid 10;
 }
+
+table,
+th,
+tr,
+td {
+  border: 1px black solid;
+  justify-content: center;
+  margin: auto auto auto auto;
+}

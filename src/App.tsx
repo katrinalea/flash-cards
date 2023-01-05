@@ -50,7 +50,7 @@ function App(): JSX.Element {
           username={userName}
         />
       ) : (
-        <Leaderboard />
+        <Leaderboard setRender={renderHandle} />
       )}
     </div>
   );

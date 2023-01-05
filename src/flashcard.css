@@ -6,6 +6,10 @@
   position: absolute;
   left: 40px;
 }
+.leaderButton {
+  position: absolute;
+  left: 100px;
+}
 
 .card {
   position: absolute;
