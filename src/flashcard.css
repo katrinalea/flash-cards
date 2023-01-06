@@ -11,6 +11,11 @@
   left: 100px;
 }
 
+.leaderButtonFinalPage {
+  position: absolute;
+  margin: auto auto auto auto;
+}
+
 .card {
   position: absolute;
   padding: 1rem;

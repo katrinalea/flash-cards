@@ -20,23 +20,20 @@ export default function Flashcards(props: propInterface): JSX.Element {
       English: "Start Game",
     },
   ];
-  const [unusedCards, setUnusedCards] = useState<words[]>(startGame);
+  const [unusedCards, setUnusedCards] = useState<words[]>(testingCards);
   const randomNumber = Math.floor(Math.random() * unusedCards.length);
   const [flip, setFlip] = useState(true);
-  const [currentCard, setCurrentCard] = useState<words>(
-    unusedCards[randomNumber]
-  );
+  const [currentCard, setCurrentCard] = useState<words>(startGame[0]);
   const [wrongCards, setWrongCards] = useState<words[]>([]);
   const [correctCards, setCorrectCards] = useState<words[]>([]);
-
-  const wrongCount = wrongCards.length;
-  const correctCount = correctCards.length;
-  console.log(unusedCards, "unusedcards");
-  console.log(testingCards, "testing");
+  const [startedGame, setStartedGame] = useState<boolean>(false);
+  const [registeredScore, setRegisteredScore] = useState<boolean>(false);
+  const [scoreStored, setScoreStored] = useState<boolean>(false);
 
   const handleNext = () => {
     setCurrentCard(unusedCards[randomNumber]);
     setFlip(false);
+    setRegisteredScore(false);
   };
 
   const handleWrong = () => {
@@ -46,6 +43,7 @@ export default function Flashcards(props: propInterface): JSX.Element {
       !correctCards.includes(currentCard)
     ) {
       setWrongCards([...wrongCards, currentCard]);
+      setRegisteredScore(true);
     }
   };
   const handleCorrect = () => {
@@ -55,6 +53,7 @@ export default function Flashcards(props: propInterface): JSX.Element {
       !wrongCards.includes(currentCard)
     ) {
       setCorrectCards([...correctCards, currentCard]);
+      setRegisteredScore(true);
     }
   };
 
@@ -68,26 +67,63 @@ export default function Flashcards(props: propInterface): JSX.Element {
     name: string
   ) => {
     console.log("storing handle entered", name, score, totalTested);
-    const response = await axios.post("https://flashcards-spanish.onrender.com/names", {
-      name: name,
-      correct: score,
-      testamount: totalTested,
-    });
+    const response = await axios.post(
+      "https://flashcards-spanish.onrender.com/names",
+      {
+        name: name,
+        correct: score,
+        testamount: totalTested,
+      }
+    );
     // const response = await axios.post("http://localhost:4000/names", {
     //   name: name,
     //   correct: score,
     //   testamount: totalTested,
     // });
     console.log(response, "score submitted");
+    setScoreStored(true);
   };
 
   return (
     <div className="page">
       {unusedCards.length === 0 ? (
-        <div>
-          <p> Congrats {props.username} you have completed your set!</p>
-          <button onClick={() => props.setRender("welcome")}> Home </button>
-        </div>
+        <>
+          <div>
+            <p> Congrats {props.username} you have completed your set!</p>
+            <button onClick={() => props.setRender("welcome")}> Home </button>
+            <button
+              onClick={() =>
+                handleStoreScore(
+                  correctCards.length,
+                  testingCards.length,
+                  props.username
+                )
+              }
+            >
+              {" "}
+              Store score?{" "}
+            </button>
+          </div>
+          <>
+            {scoreStored && (
+              <div>
+                <p>
+                  {" "}
+                  {props.username}, your score of {correctCards.length}/
+                  {testingCards.length} has been stored! Check the leaderboard
+                  to see if you made it!
+                </p>
+                <button
+                  className="leaderButtonFinalPage"
+                  onClick={() => props.setRender("leaderboard")}
+                >
+                  {" "}
+                  Leaderboard
+                </button>
+              </div>
+            )}
+          </>
+        </>
       ) : (
         <div>
           <h1> Spanish/English flashcard game</h1>
@@ -110,7 +146,8 @@ export default function Flashcards(props: propInterface): JSX.Element {
             onClick={() => {
               setUnusedCards([...testingCards]);
               setCurrentCard(unusedCards[randomNumber]);
-              setFlip(false)
+              setFlip(false);
+              setStartedGame(true);
             }}
           >
             {" "}
@@ -128,57 +165,62 @@ export default function Flashcards(props: propInterface): JSX.Element {
               {flip ? currentCard.English : currentCard.Spanish}
             </p>
           </div>
-          <button className="button-wrong" onClick={handleWrong}>
-            {" "}
-            Incorrect{" "}
-          </button>
-          <button className="button-correct" onClick={handleCorrect}>
-            {" "}
-            Correct{" "}
-          </button>
-          <br />
-          <br />
-          <button className="button-24" onClick={() => setFlip(!flip)}>
-            {" "}
-            Flip Card{" "}
-          </button>
-          <button className="button-24" onClick={handleNext}>
-            {" "}
-            Next card{" "}
-          </button>
-          <br />
-          <p>
-            {" "}
-            Words to revise = {wrongCount} <br /> Correct words = {correctCount}{" "}
-            <br />{" "}
-            <p>
-              Words left to test:{" "}
-              {unusedCards.length > 1 ? (
-                <p>
-                  {" "}
-                  ({unusedCards.length}/{props.flashCardWordData.length}){" "}
-                </p>
+          {!startedGame && (
+            <button className="button-24" onClick={() => setFlip(!flip)}>
+              {" "}
+              Flip Card{" "}
+            </button>
+          )}
+          {startedGame === true ? (
+            <>
+              {registeredScore === false ? (
+                <>
+                  <button className="button-wrong" onClick={handleWrong}>
+                    {" "}
+                    Incorrect{" "}
+                  </button>
+                  <button className="button-correct" onClick={handleCorrect}>
+                    {" "}
+                    Correct{" "}
+                  </button>
+                  <br />
+                  <br />
+                  <button className="button-24" onClick={() => setFlip(!flip)}>
+                    {" "}
+                    Flip Card{" "}
+                  </button>
+                </>
               ) : (
-                <p> No cards to test </p>
+                <button className="button-24" onClick={handleNext}>
+                  {" "}
+                  Next card{" "}
+                </button>
               )}
-            </p>
-            <button onClick={handleTestIncorrect}>
-              {" "}
-              Retest wrong answers?
-            </button>
-            <button
-              onClick={() =>
-                handleStoreScore(
-                  correctCards.length,
-                  testingCards.length,
-                  props.username
-                )
-              }
-            >
-              {" "}
-              Store score{" "}
-            </button>
-          </p>
+              <br />
+              <p>
+                {" "}
+                Words to revise = {wrongCards.length} <br /> Correct words ={" "}
+                {correctCards.length} <br />{" "}
+                <p>
+                  Words left to test:{" "}
+                  {unusedCards.length > 1 ? (
+                    <p>
+                      {" "}
+                      ({unusedCards.length}/{props.flashCardWordData.length}){" "}
+                    </p>
+                  ) : (
+                    <p> No cards to test </p>
+                  )}
+                </p>
+                <button onClick={handleTestIncorrect}>
+                  {" "}
+                  Retest wrong answers?
+                </button>
+              </p>
+            </>
+          ) : (
+            <p> Press start to begin </p>
+          )}
         </div>
       )}
     </div>
