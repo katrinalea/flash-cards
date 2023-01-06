@@ -2,6 +2,8 @@
   text-align: center;
   font: 100;
   display: block;
+  background-color: rgb(249, 221, 221);
+  margin-top: auto;
 }
 
 .testCount {
@@ -23,4 +25,143 @@ td {
 
 th {
   width: 300px;
+}
+
+input {
+  margin-bottom: 10%;
+  border-radius: 15px;
+  padding: 20px;
+  width: 200px;
+  height: 10px;
+  box-shadow: 2px 2px;
+}
+
+.button-33 {
+  background-color: #eda6a6;
+  border-radius: 100px;
+  box-shadow: rgba(205, 162, 162, 0.959) 0 -25px 18px -14px inset,
+    rgba(186, 151, 151, 0.959) 0 1px 2px, rgba(200, 150, 150, 0.959) 0 2px 4px,
+    rgba(227, 165, 165, 0.983) 0 4px 8px, rgba(204, 149, 149, 0.959) 0 8px 16px,
+    rgba(212, 160, 160, 0.959) 0 16px 32px;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  display: inline-block;
+  font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin-bottom: 10%;
+}
+
+.button-33:hover {
+  box-shadow: rgba(205, 162, 162, 0.959) 0 -25px 18px -14px inset,
+    rgba(186, 151, 151, 0.959) 0 1px 2px, rgba(200, 150, 150, 0.959) 0 2px 4px,
+    rgba(227, 165, 165, 0.983) 0 4px 8px, rgba(204, 149, 149, 0.959) 0 8px 16px,
+    rgba(212, 160, 160, 0.959) 0 16px 32px;
+  transform: scale(1.05) rotate(-1deg);
+}
+
+.leaderboard-button-33 {
+  background-color: #eda6a6;
+  border-radius: 100px;
+  box-shadow: rgba(205, 162, 162, 0.959) 0 -25px 18px -14px inset,
+    rgba(186, 151, 151, 0.959) 0 1px 2px, rgba(200, 150, 150, 0.959) 0 2px 4px,
+    rgba(227, 165, 165, 0.983) 0 4px 8px, rgba(204, 149, 149, 0.959) 0 8px 16px,
+    rgba(212, 160, 160, 0.959) 0 16px 32px;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  display: inline-block;
+  font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin-bottom: 10%;
+  position: absolute;
+  left: 125px;
+}
+
+.leaderboard-button-33:hover {
+  box-shadow: rgba(205, 162, 162, 0.959) 0 -25px 18px -14px inset,
+    rgba(186, 151, 151, 0.959) 0 1px 2px, rgba(200, 150, 150, 0.959) 0 2px 4px,
+    rgba(227, 165, 165, 0.983) 0 4px 8px, rgba(204, 149, 149, 0.959) 0 8px 16px,
+    rgba(212, 160, 160, 0.959) 0 16px 32px;
+  transform: scale(1.05) rotate(-1deg);
+}
+
+.leaderboard-finalpage-button-33 {
+  background-color: #eda6a6;
+  border-radius: 100px;
+  box-shadow: rgba(205, 162, 162, 0.959) 0 -25px 18px -14px inset,
+    rgba(186, 151, 151, 0.959) 0 1px 2px, rgba(200, 150, 150, 0.959) 0 2px 4px,
+    rgba(227, 165, 165, 0.983) 0 4px 8px, rgba(204, 149, 149, 0.959) 0 8px 16px,
+    rgba(212, 160, 160, 0.959) 0 16px 32px;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  display: inline-block;
+  font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin-bottom: 10%;
+  position: absolute;
+  margin: auto auto auto auto;
+}
+
+.leaderboard-finalpage-button-33:hover {
+  box-shadow: rgba(205, 162, 162, 0.959) 0 -25px 18px -14px inset,
+    rgba(186, 151, 151, 0.959) 0 1px 2px, rgba(200, 150, 150, 0.959) 0 2px 4px,
+    rgba(227, 165, 165, 0.983) 0 4px 8px, rgba(204, 149, 149, 0.959) 0 8px 16px,
+    rgba(212, 160, 160, 0.959) 0 16px 32px;
+  transform: scale(1.05) rotate(-1deg);
+}
+
+.home-button-33 {
+  background-color: #eda6a6;
+  border-radius: 100px;
+  box-shadow: rgba(205, 162, 162, 0.959) 0 -25px 18px -14px inset,
+    rgba(186, 151, 151, 0.959) 0 1px 2px, rgba(200, 150, 150, 0.959) 0 2px 4px,
+    rgba(227, 165, 165, 0.983) 0 4px 8px, rgba(204, 149, 149, 0.959) 0 8px 16px,
+    rgba(212, 160, 160, 0.959) 0 16px 32px;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  display: inline-block;
+  font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin-bottom: 10%;
+  position: absolute;
+  left: 30px;
+}
+
+.home-button-33:hover {
+  box-shadow: rgba(205, 162, 162, 0.959) 0 -25px 18px -14px inset,
+    rgba(186, 151, 151, 0.959) 0 1px 2px, rgba(200, 150, 150, 0.959) 0 2px 4px,
+    rgba(227, 165, 165, 0.983) 0 4px 8px, rgba(204, 149, 149, 0.959) 0 8px 16px,
+    rgba(212, 160, 160, 0.959) 0 16px 32px;
+  transform: scale(1.05) rotate(-1deg);
 }

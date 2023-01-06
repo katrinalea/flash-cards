@@ -1,19 +1,7 @@
-.wholePage {
-  display: flex;
-}
-
-.homeButton {
-  position: absolute;
-  left: 40px;
-}
-.leaderButton {
-  position: absolute;
-  left: 100px;
-}
-
-.leaderButtonFinalPage {
-  position: absolute;
-  margin: auto auto auto auto;
+.page {
+  margin-top: auto;
+  text-align: center;
+  background-color: rgb(249, 221, 221);
 }
 
 .card {
@@ -39,12 +27,6 @@
   margin-left: auto;
   margin-right: auto;
   width: 50%;
-}
-
-.page {
-  margin-top: auto;
-  background-color: #c8d0d2;
-  text-align: center;
 }
 
 .button-correct {

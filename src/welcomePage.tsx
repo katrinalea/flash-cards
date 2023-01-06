@@ -25,9 +25,9 @@ export default function WelcomePage(props: propInterface): JSX.Element {
   };
   return (
     <div className="wholePage">
-      <h1> English to Spanish flashcard game</h1>
+      <h1> Spanish/English flashcard quiz</h1>
       <button
-        className="homeButton"
+        className="leaderboard-button-33"
         onClick={() => props.setRender("leaderboard")}
       >
         {" "}
@@ -42,7 +42,11 @@ export default function WelcomePage(props: propInterface): JSX.Element {
             type="text"
             onChange={(e) => setTempUserName(e.target.value)}
           />
-          <button onClick={handleUserName}> Submit </button>
+          <br />
+          <button className="button-33" onClick={handleUserName}>
+            {" "}
+            Submit{" "}
+          </button>
         </>
       ) : (
         <>
@@ -52,13 +56,22 @@ export default function WelcomePage(props: propInterface): JSX.Element {
             test!
           </p>
           <br />
-          <button className="buttons" onClick={() => props.userCountSet(10)}>
+          <button className="button-33" onClick={() => props.userCountSet(10)}>
             {" "}
             10{" "}
           </button>
-          <button onClick={() => props.userCountSet(15)}> 15 </button>
-          <button onClick={() => props.userCountSet(20)}> 20 </button>
-          <button onClick={() => props.userCountSet(data.length)}>
+          <button className="button-33" onClick={() => props.userCountSet(15)}>
+            {" "}
+            15{" "}
+          </button>
+          <button className="button-33" onClick={() => props.userCountSet(20)}>
+            {" "}
+            20{" "}
+          </button>
+          <button
+            className="button-33"
+            onClick={() => props.userCountSet(data.length)}
+          >
             {" "}
             All cards{" "}
           </button>
@@ -72,7 +85,10 @@ export default function WelcomePage(props: propInterface): JSX.Element {
             {" "}
             All set {props.username}! You are testing {props.cardCount} words.
           </p>
-          <button onClick={handleMoveToFlash}> Ready to begin? </button>
+          <button className="button-33" onClick={handleMoveToFlash}>
+            {" "}
+            Ready to begin?{" "}
+          </button>
         </>
       )}
     </div>

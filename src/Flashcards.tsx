@@ -114,7 +114,7 @@ export default function Flashcards(props: propInterface): JSX.Element {
                   to see if you made it!
                 </p>
                 <button
-                  className="leaderButtonFinalPage"
+                  className="leaderboard-finalpage-button-33"
                   onClick={() => props.setRender("leaderboard")}
                 >
                   {" "}
@@ -128,14 +128,14 @@ export default function Flashcards(props: propInterface): JSX.Element {
         <div>
           <h1> Spanish/English flashcard game</h1>
           <button
-            className="homeButton"
+            className="home-button-33"
             onClick={() => props.setRender("welcome")}
           >
             {" "}
             Home{" "}
           </button>
           <button
-            className="leaderButton"
+            className="leaderboard-button-33"
             onClick={() => props.setRender("leaderboard")}
           >
             {" "}
