@@ -60,7 +60,7 @@ export default function Flashcards(props: propInterface): JSX.Element {
 
   const handleTestIncorrect = () => {
     setUnusedCards(wrongCards);
-    setTestingWrongCards(true);
+    //setTestingWrongCards(true);
   };
 
   const handleStoreScore = async (
