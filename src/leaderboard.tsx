@@ -34,7 +34,10 @@ export default function Leaderboard(props: propInterface): JSX.Element {
   return (
     <div className="wholePage">
       <h1> Top Ten Leaderboard </h1>
-      <button className="homeButton" onClick={() => props.setRender("welcome")}>
+      <button
+        className="home-button-33"
+        onClick={() => props.setRender("welcome")}
+      >
         {" "}
         Home{" "}
       </button>
@@ -56,6 +59,7 @@ export default function Leaderboard(props: propInterface): JSX.Element {
           </>
         ))}
       </table>
+      <br />
     </div>
   );
 }

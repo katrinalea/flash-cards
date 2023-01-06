@@ -29,6 +29,7 @@ export default function Flashcards(props: propInterface): JSX.Element {
   const [startedGame, setStartedGame] = useState<boolean>(false);
   const [registeredScore, setRegisteredScore] = useState<boolean>(false);
   const [scoreStored, setScoreStored] = useState<boolean>(false);
+  //const [testingWrongCards, setTestingWrongCards] = useState<boolean>(false);
 
   const handleNext = () => {
     setCurrentCard(unusedCards[randomNumber]);
@@ -59,6 +60,7 @@ export default function Flashcards(props: propInterface): JSX.Element {
 
   const handleTestIncorrect = () => {
     setUnusedCards(wrongCards);
+    setTestingWrongCards(true);
   };
 
   const handleStoreScore = async (
@@ -89,9 +91,16 @@ export default function Flashcards(props: propInterface): JSX.Element {
       {unusedCards.length === 0 ? (
         <>
           <div>
-            <p> Congrats {props.username} you have completed your set!</p>
-            <button onClick={() => props.setRender("welcome")}> Home </button>
+            <h2> Congrats {props.username} you have completed your set!</h2>
             <button
+              className="button-33"
+              onClick={() => props.setRender("welcome")}
+            >
+              {" "}
+              Home{" "}
+            </button>
+            <button
+              className="button-33"
               onClick={() =>
                 handleStoreScore(
                   correctCards.length,
@@ -101,8 +110,16 @@ export default function Flashcards(props: propInterface): JSX.Element {
               }
             >
               {" "}
-              Store score?{" "}
+              Store score{" "}
             </button>
+            {wrongCards.length > 0 && (
+              <button className="button-33" onClick={handleTestIncorrect}>
+                {" "}
+                Retest wrong answers
+              </button>
+            )}
+            <br />
+            <br />
           </div>
           <>
             {scoreStored && (
@@ -154,6 +171,7 @@ export default function Flashcards(props: propInterface): JSX.Element {
             Start Game
           </button>
           <br />
+          <br />
           <div className="card">
             <p className="text">
               {flip ? (
@@ -203,23 +221,22 @@ export default function Flashcards(props: propInterface): JSX.Element {
                 {correctCards.length} <br />{" "}
                 <p>
                   Words left to test:{" "}
-                  {unusedCards.length > 1 ? (
+                  {unusedCards.length > 0 ? (
                     <p>
                       {" "}
-                      ({unusedCards.length}/{props.flashCardWordData.length}){" "}
+                      ({unusedCards.length}/{testingCards.length}){" "}
                     </p>
                   ) : (
                     <p> No cards to test </p>
                   )}
                 </p>
-                <button onClick={handleTestIncorrect}>
-                  {" "}
-                  Retest wrong answers?
-                </button>
               </p>
             </>
           ) : (
-            <p> Press start to begin </p>
+            <>
+              <p> Press start to begin </p>
+              <br />
+            </>
           )}
         </div>
       )}

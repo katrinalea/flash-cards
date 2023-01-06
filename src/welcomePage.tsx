@@ -43,10 +43,12 @@ export default function WelcomePage(props: propInterface): JSX.Element {
             onChange={(e) => setTempUserName(e.target.value)}
           />
           <br />
+          <br />
           <button className="button-33" onClick={handleUserName}>
             {" "}
             Submit{" "}
           </button>
+          <br />
         </>
       ) : (
         <>
@@ -89,8 +91,10 @@ export default function WelcomePage(props: propInterface): JSX.Element {
             {" "}
             Ready to begin?{" "}
           </button>
+          <br />
         </>
       )}
+      <br />
     </div>
   );
 }
