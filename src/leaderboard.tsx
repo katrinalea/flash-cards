@@ -24,9 +24,9 @@ export default function Leaderboard(props: propInterface): JSX.Element {
       );
       //const response = await axios.get("http://localhost:4000/names");
       const fetchedWholeObject = response.data;
-      const fetchedTasks = fetchedWholeObject.data;
+      const fetchedScores = fetchedWholeObject.data;
       // sets tasks to the data
-      setLeaderboard(fetchedTasks);
+      setLeaderboard(fetchedScores);
     };
     fetchAPI();
   }, []);
@@ -42,22 +42,24 @@ export default function Leaderboard(props: propInterface): JSX.Element {
         Home{" "}
       </button>
       <table>
-        <tr>
-          <th>Name</th>
-          <th>Score</th>
-          <th>Percentage</th>
-        </tr>
-        {leaderboard.map((person) => (
-          <>
-            <tr>
-              <td>{person.name}</td>
-              <td>
-                {person.correct}/{person.testamount}
-              </td>
-              <td>{person.percentage}</td>
-            </tr>
-          </>
-        ))}
+        <tbody>
+          <tr>
+            <th>Name</th>
+            <th>Score</th>
+            <th>Percentage</th>
+          </tr>
+          {leaderboard.map((person) => (
+            <>
+              <tr key={person.id}>
+                <td>{person.name}</td>
+                <td>
+                  {person.correct}/{person.testamount}
+                </td>
+                <td>{person.percentage}</td>
+              </tr>
+            </>
+          ))}
+        </tbody>
       </table>
       <br />
     </div>
