@@ -41,6 +41,7 @@ function App(): JSX.Element {
             userNameAssign={userNameSetter}
             cardCount={countedWordData.length}
             setRender={renderHandle}
+            username={userName}
           />
         </>
       ) : pageToRender === "flashcards" ? (

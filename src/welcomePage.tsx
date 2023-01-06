@@ -8,11 +8,13 @@ interface propInterface {
   userNameAssign: (username: string) => void;
   cardCount: number;
   setRender: (page: string) => void;
+  username: string;
 }
 
 export default function WelcomePage(props: propInterface): JSX.Element {
   const [userName, setUserName] = useState<string>("");
   const [tempUserName, setTempUserName] = useState<string>("");
+
   const handleMoveToFlash = () => {
     props.changeToFlashCards("flashcards");
   };
@@ -35,7 +37,7 @@ export default function WelcomePage(props: propInterface): JSX.Element {
       <br />
       {!userName ? (
         <>
-          <p> Insert name: </p>
+          <p> Please insert name to begin: </p>
           <input
             type="text"
             onChange={(e) => setTempUserName(e.target.value)}
@@ -68,9 +70,9 @@ export default function WelcomePage(props: propInterface): JSX.Element {
           <br />
           <p className="testCount">
             {" "}
-            You are currently testing {props.cardCount} words.
+            All set {props.username}! You are testing {props.cardCount} words.
           </p>
-          <button onClick={handleMoveToFlash}> Go to game </button>
+          <button onClick={handleMoveToFlash}> Ready to begin? </button>
         </>
       )}
     </div>
