@@ -33,7 +33,7 @@ function App(): JSX.Element {
 
   return (
     <div>
-      {pageToRender === "welcome" ? (
+      {pageToRender === "welcome" && (
         <>
           <WelcomePage
             userCountSet={flashcardCountFunction}
@@ -44,13 +44,15 @@ function App(): JSX.Element {
             username={userName}
           />
         </>
-      ) : pageToRender === "flashcards" ? (
+      )}
+      {pageToRender === "flashcards" && (
         <Flashcards
           flashCardWordData={countedWordData}
           setRender={renderHandle}
           username={userName}
         />
-      ) : (
+      )}
+      {pageToRender === "leaderboard" && (
         <Leaderboard setRender={renderHandle} />
       )}
     </div>
