@@ -10,7 +10,7 @@ interface propInterface {
   flashCardWordData: words[];
   setRender: (page: string) => void;
   username: string;
-  handleIncorrect: (words: words[]) => void
+  handleIncorrect: (words: words[]) => void;
 }
 
 export default function Flashcards(props: propInterface): JSX.Element {
@@ -30,7 +30,6 @@ export default function Flashcards(props: propInterface): JSX.Element {
   const [startedGame, setStartedGame] = useState<boolean>(false);
   const [registeredScore, setRegisteredScore] = useState<boolean>(false);
   const [scoreStored, setScoreStored] = useState<boolean>(false);
-  
 
   const handleNext = () => {
     setCurrentCard(unusedCards[randomNumber]);
@@ -61,8 +60,8 @@ export default function Flashcards(props: propInterface): JSX.Element {
   };
 
   const handleTestIncorrect = () => {
-    props.handleIncorrect(wrongCards)
-    props.setRender("testIncorrect")
+    props.handleIncorrect(wrongCards);
+    props.setRender("testIncorrect");
   };
 
   const handleStoreScore = async (

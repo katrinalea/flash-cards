@@ -17,7 +17,7 @@ function App(): JSX.Element {
   const [countedWordData, setCountedWordData] = useState<words[]>(wordData);
   const [pageToRender, setPageToRender] = useState<string>("welcome");
   const [userName, setUserName] = useState<string>("");
-  const [incorrectCards, setIncorrectCards] = useState<words[]>(wordData)
+  const [incorrectCards, setIncorrectCards] = useState<words[]>(wordData);
 
   const flashcardCountFunction = (chosenCount: number) => {
     setCountedWordData(
@@ -34,8 +34,8 @@ function App(): JSX.Element {
   };
 
   const handleIncorrect = (wrongCards: words[]) => {
-    setIncorrectCards([...wrongCards])
-  }
+    setIncorrectCards([...wrongCards]);
+  };
 
   return (
     <div>
@@ -56,16 +56,19 @@ function App(): JSX.Element {
           flashCardWordData={countedWordData}
           setRender={renderHandle}
           username={userName}
-          handleIncorrect= {handleIncorrect}
+          handleIncorrect={handleIncorrect}
         />
       )}
       {pageToRender === "leaderboard" && (
         <Leaderboard setRender={renderHandle} />
       )}
-      {pageToRender === "testIncorrect" && 
-      <TestingIncorrect setRender={renderHandle}
-      username={userName}
-      incorrectCards = {incorrectCards} />}
+      {pageToRender === "testIncorrect" && (
+        <TestingIncorrect
+          setRender={renderHandle}
+          username={userName}
+          incorrectCards={incorrectCards}
+        />
+      )}
     </div>
   );
 }
