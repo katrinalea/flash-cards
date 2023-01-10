@@ -4,6 +4,7 @@ import { useState } from "react";
 import data from "./words.json";
 import "./welcomepage.css";
 import Leaderboard from "./leaderboard";
+import { TestingIncorrect } from "./testingIncorrect";
 
 interface words {
   English: string;
@@ -16,6 +17,7 @@ function App(): JSX.Element {
   const [countedWordData, setCountedWordData] = useState<words[]>(wordData);
   const [pageToRender, setPageToRender] = useState<string>("welcome");
   const [userName, setUserName] = useState<string>("");
+  const [incorrectCards, setIncorrectCards] = useState<words[]>(wordData)
 
   const flashcardCountFunction = (chosenCount: number) => {
     setCountedWordData(
@@ -30,6 +32,10 @@ function App(): JSX.Element {
   const userNameSetter = (name: string) => {
     setUserName(name);
   };
+
+  const handleIncorrect = (wrongCards: words[]) => {
+    setIncorrectCards([...wrongCards])
+  }
 
   return (
     <div>
@@ -50,11 +56,16 @@ function App(): JSX.Element {
           flashCardWordData={countedWordData}
           setRender={renderHandle}
           username={userName}
+          handleIncorrect= {handleIncorrect}
         />
       )}
       {pageToRender === "leaderboard" && (
         <Leaderboard setRender={renderHandle} />
       )}
+      {pageToRender === "testIncorrect" && 
+      <TestingIncorrect setRender={renderHandle}
+      username={userName}
+      incorrectCards = {incorrectCards} />}
     </div>
   );
 }
