@@ -1,4 +1,4 @@
-import Flashcards from "./Flashcards";
+import Flashcards from "./flashcards";
 import WelcomePage from "./welcomePage";
 import { useState } from "react";
 import data from "./words.json";

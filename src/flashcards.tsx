@@ -159,18 +159,20 @@ export default function Flashcards(props: propInterface): JSX.Element {
             {" "}
             Leaderboard
           </button>
-          <button
-            className="button-24"
-            onClick={() => {
-              setUnusedCards([...testingCards]);
-              setCurrentCard(unusedCards[randomNumber]);
-              setFlip(false);
-              setStartedGame(true);
-            }}
-          >
-            {" "}
-            Start Game
-          </button>
+          {startedGame === false && (
+            <button
+              className="button-24"
+              onClick={() => {
+                setUnusedCards([...testingCards]);
+                setCurrentCard(unusedCards[randomNumber]);
+                setFlip(false);
+                setStartedGame(true);
+              }}
+            >
+              {" "}
+              Start Game
+            </button>
+          )}
           <br />
           <br />
           <div className="card">
