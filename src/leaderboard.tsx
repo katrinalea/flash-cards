@@ -15,8 +15,11 @@ interface propInterface {
 
 //eventually need to connect to remote server
 export default function Leaderboard(props: propInterface): JSX.Element {
+  //------------------------------------------------------------------------------------ use states
+
   const [leaderboard, setLeaderboard] = useState<LBoard[]>([]);
 
+  //------------------------------------------------------------------------------------ contact with db to render scores
   useEffect(() => {
     const fetchAPI = async () => {
       const response = await axios.get(
@@ -30,6 +33,8 @@ export default function Leaderboard(props: propInterface): JSX.Element {
     };
     fetchAPI();
   }, []);
+
+  //------------------------------------------------------------------------------------ page content
 
   return (
     <div className="wholePage">

@@ -21,6 +21,9 @@ export default function Flashcards(props: propInterface): JSX.Element {
       English: "Start Game",
     },
   ];
+
+  //------------------------------------------------------------------------------------ use states
+
   const [unusedCards, setUnusedCards] = useState<words[]>(testingCards);
   const randomNumber = Math.floor(Math.random() * unusedCards.length);
   const [flip, setFlip] = useState(true);
@@ -31,11 +34,15 @@ export default function Flashcards(props: propInterface): JSX.Element {
   const [registeredScore, setRegisteredScore] = useState<boolean>(false);
   const [scoreStored, setScoreStored] = useState<boolean>(false);
 
+  //------------------------------------------------------------------------------------ function to go to next card
+
   const handleNext = () => {
     setCurrentCard(unusedCards[randomNumber]);
     setFlip(false);
     setRegisteredScore(false);
   };
+
+  //------------------------------------------------------------------------------------ function to mark card as incorrect
 
   const handleWrong = () => {
     setUnusedCards([...unusedCards.filter((card) => card !== currentCard)]);
@@ -48,6 +55,8 @@ export default function Flashcards(props: propInterface): JSX.Element {
     }
   };
 
+  //------------------------------------------------------------------------------------ function to mark card as correct
+
   const handleCorrect = () => {
     setUnusedCards([...unusedCards.filter((card) => card !== currentCard)]);
     if (
@@ -59,10 +68,14 @@ export default function Flashcards(props: propInterface): JSX.Element {
     }
   };
 
+  //------------------------------------------------------------------------------------ function to change to testing wrong cards
+
   const handleTestIncorrect = () => {
     props.handleIncorrect(wrongCards);
     props.setRender("testIncorrect");
   };
+
+  //------------------------------------------------------------------------------------ function to store score in db
 
   const handleStoreScore = async (
     score: number,
@@ -78,14 +91,11 @@ export default function Flashcards(props: propInterface): JSX.Element {
         testamount: totalTested,
       }
     );
-    // const response = await axios.post("http://localhost:4000/names", {
-    //   name: name,
-    //   correct: score,
-    //   testamount: totalTested,
-    // });
     console.log(response, "score submitted");
     setScoreStored(true);
   };
+
+  //------------------------------------------------------------------------------------ page content
 
   return (
     <div className="page">

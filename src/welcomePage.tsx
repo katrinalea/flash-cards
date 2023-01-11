@@ -12,17 +12,25 @@ interface propInterface {
 }
 
 export default function WelcomePage(props: propInterface): JSX.Element {
+  //------------------------------------------------------------------------------------ use states
   const [userName, setUserName] = useState<string>("");
   const [tempUserName, setTempUserName] = useState<string>("");
+
+  //------------------------------------------------------------------------------------ function to go to game
 
   const handleMoveToFlash = () => {
     props.changeToFlashCards("flashcards");
   };
 
+  //------------------------------------------------------------------------------------ function to input username
+
   const handleUserName = () => {
     setUserName(tempUserName);
     props.userNameAssign(tempUserName);
   };
+
+  //------------------------------------------------------------------------------------ page content
+
   return (
     <div className="wholePage">
       <h1> Spanish/English flashcard quiz</h1>

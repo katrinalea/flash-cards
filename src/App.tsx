@@ -13,11 +13,14 @@ interface words {
 
 function App(): JSX.Element {
   const wordData = data;
+  //------------------------------------------------------------------------------------ use state
 
   const [countedWordData, setCountedWordData] = useState<words[]>(wordData);
   const [pageToRender, setPageToRender] = useState<string>("welcome");
   const [userName, setUserName] = useState<string>("");
   const [incorrectCards, setIncorrectCards] = useState<words[]>(wordData);
+
+  //------------------------------------------------------------------------------------ function to generate random flashcard pack
 
   const flashcardCountFunction = (chosenCount: number) => {
     setCountedWordData(
@@ -25,17 +28,25 @@ function App(): JSX.Element {
     );
   };
 
+  //------------------------------------------------------------------------------------ change render
+
   const renderHandle = (page: string) => {
     setPageToRender(page);
   };
+
+  //------------------------------------------------------------------------------------  set username
 
   const userNameSetter = (name: string) => {
     setUserName(name);
   };
 
+  //------------------------------------------------------------------------------------ set incorrect
+
   const handleIncorrect = (wrongCards: words[]) => {
     setIncorrectCards([...wrongCards]);
   };
+
+  //------------------------------------------------------------------------------------ page content
 
   return (
     <div>
