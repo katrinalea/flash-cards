@@ -2,9 +2,10 @@ import Flashcards from "./flashcards";
 import WelcomePage from "./welcomePage";
 import { useState } from "react";
 import data from "./words.json";
-import "./welcomepage.css";
+import "./style.css";
 import Leaderboard from "./leaderboard";
 import { TestingIncorrect } from "./testingIncorrect";
+import NavBar from "./navBar";
 
 interface words {
   English: string;
@@ -50,6 +51,8 @@ function App(): JSX.Element {
 
   return (
     <div>
+      <NavBar setRender={renderHandle} />
+      <br />
       {pageToRender === "welcome" && (
         <>
           <WelcomePage

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./flashcard.css";
 import axios from "axios";
 
 interface words {
@@ -98,18 +97,11 @@ export default function Flashcards(props: propInterface): JSX.Element {
   //------------------------------------------------------------------------------------ page content
 
   return (
-    <div className="page">
+    <div>
       {unusedCards.length === 0 ? (
         <>
           <div>
             <h2> Congrats {props.username} you have completed your set!</h2>
-            <button
-              className="button-33"
-              onClick={() => props.setRender("welcome")}
-            >
-              {" "}
-              Home{" "}
-            </button>
             <button
               className="button-33"
               onClick={() =>
@@ -141,34 +133,12 @@ export default function Flashcards(props: propInterface): JSX.Element {
                   {testingCards.length} has been stored! Check the leaderboard
                   to see if you made it!
                 </p>
-                <button
-                  className="leaderboard-finalpage-button-33"
-                  onClick={() => props.setRender("leaderboard")}
-                >
-                  {" "}
-                  Leaderboard
-                </button>
               </div>
             )}
           </>
         </>
       ) : (
         <div>
-          <h1> Spanish/English flashcard game</h1>
-          <button
-            className="home-button-33"
-            onClick={() => props.setRender("welcome")}
-          >
-            {" "}
-            Home{" "}
-          </button>
-          <button
-            className="leaderboard-button-33"
-            onClick={() => props.setRender("leaderboard")}
-          >
-            {" "}
-            Leaderboard
-          </button>
           {startedGame === false && (
             <button
               className="button-24"

@@ -1,5 +1,4 @@
 import data from "./words.json";
-import "./welcomepage.css";
 import { useState } from "react";
 
 interface propInterface {
@@ -33,15 +32,6 @@ export default function WelcomePage(props: propInterface): JSX.Element {
 
   return (
     <div className="wholePage">
-      <h1> Spanish/English flashcard quiz</h1>
-      <button
-        className="leaderboard-button-33"
-        onClick={() => props.setRender("leaderboard")}
-      >
-        {" "}
-        Leaderboard
-      </button>
-
       <br />
       {!userName ? (
         <>

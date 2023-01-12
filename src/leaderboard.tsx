@@ -39,13 +39,6 @@ export default function Leaderboard(props: propInterface): JSX.Element {
   return (
     <div className="wholePage">
       <h1> Top Ten Leaderboard </h1>
-      <button
-        className="home-button-33"
-        onClick={() => props.setRender("welcome")}
-      >
-        {" "}
-        Home{" "}
-      </button>
       <table>
         <tbody>
           <tr>

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./flashcard.css";
 
 interface propInterface {
   setRender: (page: string) => void;
@@ -32,13 +31,6 @@ export function TestingIncorrect(props: propInterface): JSX.Element {
       <div className="page">
         <div>
           <br />
-          <button
-            className="home-button-33"
-            onClick={() => props.setRender("welcome")}
-          >
-            {" "}
-            Home{" "}
-          </button>
           <p>
             {props.username}, you got {props.incorrectCards.length} incorrect!{" "}
           </p>
