@@ -4,7 +4,8 @@ body {
 }
 .wholePage {
   display: block;
-  margin-top: auto;
+  margin-top: 5%;
+  transform: scale(1.2);
 }
 
 .testCount {
@@ -31,8 +32,8 @@ th {
 input {
   border-radius: 15px;
   padding: 20px;
-  width: 200px;
-  height: 10px;
+  width: 20vw;
+  height: 5vw;
   box-shadow: 2px 2px;
 }
 

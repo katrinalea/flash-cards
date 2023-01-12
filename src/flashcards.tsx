@@ -97,7 +97,7 @@ export default function Flashcards(props: propInterface): JSX.Element {
   //------------------------------------------------------------------------------------ page content
 
   return (
-    <div>
+    <div className="wholePage">
       {unusedCards.length === 0 ? (
         <>
           <div>

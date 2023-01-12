@@ -28,7 +28,7 @@ export function TestingIncorrect(props: propInterface): JSX.Element {
 
   return (
     <>
-      <div className="page">
+      <div className="wholePage">
         <div>
           <br />
           <p>
